@@ -1,0 +1,75 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  .nav-item {
+    padding-left: 10px;
+    font-weight: 500;
+  }
+
+
+  .top-bar{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .content {
+    padding: 20px;
+  }
+  
+  /* Add more styles as needed */
+  
+
+
+
+  /* extra Styling */
+
+  .brand{
+    font-weight: bolder;
+  }
+  .brandname{
+    color: blue;
+  }
+
+
+  .hover {
+    position: relative;
+    display: inline-block;
+    color: black; /* Initial text color */
+  }
+  
+  .hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Initial line width */
+    height: 2px;
+    background-color: blue;
+    transition: width 0.3s ease; /* Transition for width change */
+  }
+  
+  .hover:hover::after {
+    width: 100%; /* Increased line width on hover */
+  }
+  
+  .hover:hover {
+    color: blue; /* Text color on hover */
+  }
+  
+  
