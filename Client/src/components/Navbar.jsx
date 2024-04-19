@@ -12,7 +12,7 @@ function Navbar() {
             <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex">
                   <li className="nav-item">
                   <Link to="/" className="nav-link active" aria-current="page"><span className="hover">Home</span></Link>
                   </li>
@@ -23,12 +23,12 @@ function Navbar() {
                   <Link to="/contact" className="nav-link active" aria-current="page"><span className="hover">Contact Us</span></Link>
                   </li>
               </ul>
-              <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
+              <ul className="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
                   <li className="nav-item">
-                  <Link to="/login" className="nav-link active" aria-current="page"><span className='hover'>Login</span></Link>
+                  <Link to="/login" className="nav-link active" aria-current="page"><span className='hover login'>Login</span></Link>
                   </li>
                   <li className="nav-item">
-                  <Link to="/registration" className="nav-link active" aria-current="page"><span className="hover">Registration</span></Link>
+                  <Link to="/registration" className="nav-link active" aria-current="page"><button className="btn btn-success">Try For Free</button></Link>
                   </li>
               </ul>
             </div>
