@@ -8,7 +8,7 @@ function Home() {
         <div className="col">
           <h1>Try Xeotec E-Services CRM for Free.</h1>
           <p>Unite marketing, sales, and service in a single app. Try Xeotec E-Services CRM today. Made with love in MERN.</p>
-          <button className='btn demo-btn btn-primary'>Contact Us</button>
+          <button className='btn demo-btn btn-primary'>Contact </button>
           <button className='btn demo-btn demo-btn-watch btn-outline-primary'>Watch Demo</button>
         </div>
         <div className="col col-video">
