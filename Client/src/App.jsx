@@ -7,6 +7,8 @@ import Registration from './components/Registration';
 import Home from './components/Home';
 import Documentation from './components/Documentation';
 import ContactUs from './components/ContactUs';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
