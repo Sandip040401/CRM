@@ -1,16 +1,52 @@
-// Home.js
-import React from 'react';
-import '../components/ContactUs.css'
+import React, { useState } from 'react';
+import '../components/ContactUs.css';
 import Map from './Map';
+
 function ContactUs() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [messages, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setMessage('Email sent successfully!');
+      	setIsError(false); 
+      } else {
+		setMessage("Failed to send email.");
+      	setIsError(true);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+	  setMessage("An error occurred while sending the email.");
+	  setIsError(true);
+    }
+  };
+
   return (
-
-
-<>
-<div class="container d-flex justify-content-center align-items-center">
-	
-
-	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 563" fill="none">
+    <>
+      <div className="container d-flex justify-content-center align-items-center">
+	  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 563" fill="none">
 			<g id="Image">
 					<g id="g14">
 							<g id="g16">
@@ -305,42 +341,57 @@ function ContactUs() {
 					</g>
 			</g>
 	</svg>
-	
-	
-	
-	<form>
-		<h1 class="title text-center mb-4">Talk to Us</h1>
-
-		
-			<div class="form-group position-relative">
-				<label for="formName" class="d-block">
-					<i class="icon" data-feather="user"></i>
-				</label>
-				<input type="text" id="formName" class="form-control form-control-lg thick" placeholder="Name"/>
-			</div>
-
-			<div class="form-group position-relative">
-				<label for="formEmail" class="d-block">
-					<i class="icon" data-feather="mail"></i>
-				</label>
-				<input type="email" id="formEmail" class="form-control form-control-lg thick" placeholder="E-mail"/>
-			</div>
-
-			<div class="form-group message">
-				<textarea id="formMessage" class="form-control form-control-lg" rows="7" placeholder="MessageUs"></textarea>
-			</div>
-		
-			<div class="text-center">
-				<button type="submit" class="btn btn-primary" tabIndex="-1">Send message</button>
-			</div>
-	</form>
-	
-</div>
-<div>
-<Map/>
-</div>
-</>
+        <form onSubmit={handleSubmit}>
+          <h1 className="title text-center mb-4">Talk to Us</h1>
+          <div className="form-group position-relative">
+            <label htmlFor="name" className="d-block">
+              <i className="icon" data-feather="user"></i>
+            </label>
+            <input
+              type="text"
+              id="name"
+              className="form-control form-control-lg thick"
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group position-relative">
+            <label htmlFor="email" className="d-block">
+              <i className="icon" data-feather="mail"></i>
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="form-control form-control-lg thick"
+              placeholder="E-mail"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group message">
+            <textarea
+              id="message"
+              className="form-control form-control-lg"
+              rows="7"
+              placeholder="Message Us"
+              value={formData.message}
+              onChange={handleChange}
+            ></textarea>
+          </div>
+          <div className="text-center">
+            <button type="submit" className="btn btn-primary" tabIndex="-1">Send message</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <Map />
+      </div>
+	  {messages && (
+        <div className={`messages ${isError ? "error" : ""}`}>{messages}</div>
+      )}
+    </>
   );
-  }
+}
 
 export default ContactUs;

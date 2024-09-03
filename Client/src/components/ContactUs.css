@@ -124,3 +124,46 @@ svg {
     background-size: 100% 100%;
     transform: translateY(-0.15em);
   }
+
+/* ContactUs.css */
+
+
+.messages {
+  position: fixed;
+  font-size: larger;
+  top: 16%;
+  right: 0;
+  transform: translate(100%, -50%);
+  background-color: #11b13c;
+  color: #fff;
+  padding: 5px 20px;
+  border-radius: 8px;
+  animation: slideIn 0.5s forwards;
+  transition: transform 0.5s;
+}
+
+.messages.error {
+  background-color: #dc3545;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translate(100%, -50%);
+  }
+  100% {
+    transform: translate(0, -50%);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translate(0, -50%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.messages.hide {
+  animation: slideOut 0.5s forwards;
+}

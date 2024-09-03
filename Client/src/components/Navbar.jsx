@@ -1,8 +1,12 @@
 import React from 'react';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 function Navbar() {
+  const { loginWithRedirect ,logout, user , isAuthenticated} = useAuth0();
+
   return (
     <div>
         <nav className="navbar navbar-expand-lg">
@@ -17,6 +21,9 @@ function Navbar() {
                   <Link to="/" className="nav-link active" aria-current="page"><span className="hover">Home</span></Link>
                   </li>
                   <li className="nav-item">
+                  <Link to="/features" className="nav-link active" aria-current="page"><span className="hover">Features</span></Link>
+                  </li>
+                  <li className="nav-item">
                   <Link to="/documentation" className="nav-link active" aria-current="page"><span className="hover">Documentation</span></Link>
                   </li>
                   <li className="nav-item">
@@ -25,10 +32,24 @@ function Navbar() {
               </ul>
               <ul className="navbar-nav ml-auto mb-2 mb-lg-0 d-flex">
                   <li className="nav-item">
-                  <Link to="/login" className="nav-link active" aria-current="page"><span className='hover login'>Login</span></Link>
+                  {isAuthenticated ? (
+                    <>
+                      <h3>Welcome {user.name}</h3>
+                    </>
+                  ):(
+                    <button style={{marginTop:'8px'}} className="nav-link active hover login" onClick={(e) => loginWithRedirect()}>Login</button>
+                  )}
                   </li>
                   <li className="nav-item">
+                    {isAuthenticated ?(
+                      <>
+                       <button className='btn btn-danger' onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                        Log Out
+                      </button>
+                      </>
+                    ):(
                   <Link to="/registration" className="nav-link active" aria-current="page"><button className="btn btn-success">Try For Free</button></Link>
+                    )}
                   </li>
               </ul>
             </div>
